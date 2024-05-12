@@ -5,8 +5,10 @@ WORKDIR /var/www/html
 RUN apt-get update \
     && apt-get install --quiet --yes --no-install-recommends \
         libzip-dev \
+        zlib1g-dev \
+        libicu-dev \
         unzip \
-    && docker-php-ext-install zip pdo_mysql \
+    && docker-php-ext-install zip pdo_mysql intl \
     && pecl install -o -f redis-7.2 \
     && docker-php-ext-enable redis
 
@@ -20,9 +22,6 @@ RUN groupadd --gid 1000 appuser \
     -G www-data,root --shell /bin/bash \
     --create-home appuser
 
-
-
 USER appuser
 
 EXPOSE 9000
-
