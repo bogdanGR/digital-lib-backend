@@ -29,6 +29,8 @@ class Publication extends Model
     const TYPE_DIPLOMA = 4;
     const TYPE_PHD = 5;
 
+    public $timestamps = true;
+
     public function authors()
     {
         return $this->belongsToMany(People::class, 'author_publication', 'publication_id', 'person_id');

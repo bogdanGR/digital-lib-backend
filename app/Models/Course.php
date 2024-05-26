@@ -20,6 +20,7 @@ class Course extends Model
     const UNDERGRADUATE = 1;
     const GRADUATE = 2;
 
+    public $timestamps = true;
 
     public static function types()
     {
