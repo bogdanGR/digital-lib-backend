@@ -18,6 +18,21 @@ class Project extends Model
     const STATUS_COMPLETED = 2;
 
 
+    protected $fillable = [
+        'project_name',
+        'framework',
+        'contract_number',
+        'status',
+        'type',
+        'full_title',
+        'participants',
+        'budget',
+        'description',
+        'project_url',
+        'date_start',
+        'date_end',
+    ];
+
     public static function getTypes()
     {
         return [
