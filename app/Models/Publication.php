@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Publication extends Model
 {
@@ -31,17 +33,26 @@ class Publication extends Model
 
     public $timestamps = true;
 
-    public function authors()
+    /**
+     * @return BelongsToMany
+     */
+    public function authors(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(People::class, 'author_publication', 'publication_id', 'person_id');
     }
 
-    public function file()
+    /**
+     * @return BelongsTo
+     */
+    public function file(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(File::class, 'file_id', 'id');
     }
 
-    public static function getPublicationTypes()
+    /**
+     * @return string[]
+     */
+    public static function getPublicationTypes(): array
     {
         return [
             self::TYPE_JOURNAL => 'Journal',

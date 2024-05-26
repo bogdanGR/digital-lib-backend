@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class People extends Model
 {
@@ -20,7 +21,11 @@ class People extends Model
 
     public $timestamps = true;
 
-    public function publications()
+
+    /**
+     * @return BelongsToMany
+     */
+    public function publications(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Publication::class, 'author_publication', 'person_id', 'publication_id');
     }

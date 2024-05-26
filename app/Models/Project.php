@@ -33,15 +33,21 @@ class Project extends Model
         'date_end',
     ];
 
-    public static function getTypes()
+    /**
+     * @return string[]
+     */
+    public static function getTypes(): array
     {
         return [
-          self::TYPE_EU => 'EU Funding',
-          self::TYPE_GR => 'Greek Funding',
+            self::TYPE_EU => 'EU Funding',
+            self::TYPE_GR => 'Greek Funding',
         ];
     }
 
-    public static function getStatuses()
+    /**
+     * @return string[]
+     */
+    public static function getStatuses(): array
     {
         return [
             self::STATUS_IN_PROGRESS => 'In Progress',

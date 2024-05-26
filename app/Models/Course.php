@@ -22,7 +22,10 @@ class Course extends Model
 
     public $timestamps = true;
 
-    public static function types()
+    /**
+     * @return string[]
+     */
+    public static function types(): array
     {
         return [
             self::UNDERGRADUATE => 'Undergraduate',
