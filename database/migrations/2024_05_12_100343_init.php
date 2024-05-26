@@ -60,9 +60,8 @@ return new class extends Migration
             $table->text('abstract');
             $table->text('publisher');
             $table->date('publication_date');
-            $table->string('file');
             $table->integer('publication_type');
-            $table->bigInteger('file_id')->unsigned();
+            $table->bigInteger('file_id')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('file_id')->references('id')->on('file');
