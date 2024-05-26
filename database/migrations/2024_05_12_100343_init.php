@@ -32,8 +32,8 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('role')->comment('Faculty, Researchers');
-            $table->string('title')->comment('Assistant professor etc..');
+            $table->string('role')->comment('Faculty, Researchers')->nullable();
+            $table->string('title')->comment('Assistant professor etc..')->nullable();
             $table->timestamps();
         });
 
@@ -57,7 +57,6 @@ return new class extends Migration
         Schema::create('publication', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->bigInteger('author_id')->unsigned();
             $table->text('abstract');
             $table->text('publisher');
             $table->date('publication_date');
@@ -66,7 +65,6 @@ return new class extends Migration
             $table->bigInteger('file_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('author_id')->references('id')->on('people');
             $table->foreign('file_id')->references('id')->on('file');
         });
     }
