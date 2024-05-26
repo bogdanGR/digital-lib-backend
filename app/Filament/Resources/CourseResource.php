@@ -6,6 +6,7 @@ use App\Filament\Resources\CourseResource\Pages;
 use App\Filament\Resources\CourseResource\RelationManagers;
 use App\Models\Course;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -25,8 +26,9 @@ class CourseResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title_en')->required(),
                 Forms\Components\TextInput::make('title_gr')->required(),
-                Forms\Components\TextInput::make('type')->required(),
-
+                Select::make('type')
+                    ->required()
+                    ->options(Course::types()),
             ]);
     }
 
@@ -36,7 +38,12 @@ class CourseResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title_en'),
                 Tables\Columns\TextColumn::make('title_gr'),
-                Tables\Columns\TextColumn::make('type'),
+                Tables\Columns\TextColumn::make('type')
+                    ->label('Type')
+                    ->formatStateUsing(function ($state) {
+                        $types = Course::types();
+                        return $types[$state] ?? 'Unknown';
+                    }),
             ])
             ->filters([
                 //

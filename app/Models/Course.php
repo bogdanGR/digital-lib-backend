@@ -16,4 +16,17 @@ class Course extends Model
         'title_gr',
         'type',
     ];
+
+    const UNDERGRADUATE = 1;
+    const GRADUATE = 2;
+
+
+    public static function types()
+    {
+        return [
+            self::UNDERGRADUATE => 'Undergraduate',
+            self::GRADUATE => 'Graduate',
+        ];
+    }
+
 }
