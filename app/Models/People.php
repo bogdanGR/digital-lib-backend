@@ -29,4 +29,5 @@ class People extends Model
     {
         return $this->belongsToMany(Publication::class, 'author_publication', 'person_id', 'publication_id');
     }
+
 }
