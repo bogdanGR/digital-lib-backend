@@ -21,7 +21,7 @@ class PublicationResource extends JsonResource
             'title' => $this->title,
             'abstract' => $this->abstract,
             'publisher' => $this->publisher,
-            'publication_date' => $this->publication_date,
+            'publication_date' => date("m.d.Y", strtotime($this->publication_date)),
             'publication_type_id' => $this->publication_type,
             'publication_type' => !empty($this->publication_type) ? Publication::getPublicationTypes()[$this->publication_type] : null,
             'file' => $this->file ? url(Storage::url($this->file->file_path)) : null,
