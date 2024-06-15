@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -53,5 +54,13 @@ class Project extends Model
             self::STATUS_IN_PROGRESS => 'In Progress',
             self::STATUS_COMPLETED => 'Completed',
         ];
+    }
+
+    public static function calculateMonthsDifference(string $dateStart, string $dateEnd): int
+    {
+        $start = Carbon::createFromFormat('Y-m-d', $dateStart);
+        $end = Carbon::createFromFormat('Y-m-d', $dateEnd);
+
+        return $start->diffInMonths($end);
     }
 }

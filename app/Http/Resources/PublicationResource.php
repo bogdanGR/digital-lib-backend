@@ -26,7 +26,6 @@ class PublicationResource extends JsonResource
             'publication_type' => !empty($this->publication_type) ? Publication::getPublicationTypes()[$this->publication_type] : null,
             'file' => $this->file ? url(Storage::url($this->file->file_path)) : null,
             'authors' => PeopleResource::collection($this->whenLoaded('authors')),
-
         ];
     }
 }
