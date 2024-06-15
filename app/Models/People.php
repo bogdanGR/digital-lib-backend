@@ -17,10 +17,15 @@ class People extends Model
         'last_name',
         'role',
         'title',
+        'type',
     ];
 
     public $timestamps = true;
 
+    const TYPE_TEACHER = 1;
+    const TYPE_LABORATORY_TEACHING_STAFF = 2;
+    const TYPE_AUTHOR = 3;
+    const TYPE_STUDENT = 4;
 
     /**
      * @return BelongsToMany
@@ -30,4 +35,16 @@ class People extends Model
         return $this->belongsToMany(Publication::class, 'author_publication', 'person_id', 'publication_id');
     }
 
+    /**
+     * @return array[]
+     */
+    public static function getTypes(): array
+    {
+        return [
+            self::TYPE_AUTHOR => 'Author',
+            self::TYPE_STUDENT => 'Student',
+            self::TYPE_TEACHER => 'Teacher',
+            self::TYPE_LABORATORY_TEACHING_STAFF => 'Laboratory Teaching Staff'
+        ];
+    }
 }
