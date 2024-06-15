@@ -56,11 +56,26 @@ class Project extends Model
         ];
     }
 
+    /**
+     * @param string $dateStart
+     * @param string $dateEnd
+     * @return int
+     */
     public static function calculateMonthsDifference(string $dateStart, string $dateEnd): int
     {
         $start = Carbon::createFromFormat('Y-m-d', $dateStart);
         $end = Carbon::createFromFormat('Y-m-d', $dateEnd);
 
         return $start->diffInMonths($end);
+    }
+
+    /**
+     * @param string $date
+     * @return int
+     */
+    public static function getYearFromDateString(string $date): int
+    {
+        $carbonDate = Carbon::createFromFormat('Y-m-d', $date);
+        return $carbonDate->year;
     }
 }

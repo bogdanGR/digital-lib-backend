@@ -33,6 +33,8 @@ class ProjectResource extends JsonResource
             'description' => $this->description,
             'project_url' => $this->project_url,
             'duration' => Project::calculateMonthsDifference($this->date_start, $this->date_end),
+            'year_start' => Project::getYearFromDateString($this->date_start),
+            'year_end' => Project::getYearFromDateString($this->date_end),
         ];
     }
 }
