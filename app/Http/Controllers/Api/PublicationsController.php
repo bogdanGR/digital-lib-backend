@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PublicationResource;
 use App\Models\Publication;
+use App\Models\search\PublicationSearch;
 use Illuminate\Http\Request;
 
 class PublicationsController extends Controller
@@ -12,9 +13,10 @@ class PublicationsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return PublicationResource::collection(Publication::with('authors')->get());
+        $publications = PublicationSearch::apply($request);
+        return PublicationResource::collection($publications);
     }
 
     /**

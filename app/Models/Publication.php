@@ -62,4 +62,10 @@ class Publication extends Model
             self::TYPE_PHD => 'Phd Thesis',
         ];
     }
+
+    public static function getPublicationTypeIdByType($type): ?int
+    {
+        $types = array_flip(self::getPublicationTypes());
+        return $types[$type] ?? null;
+    }
 }
