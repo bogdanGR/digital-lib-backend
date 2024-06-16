@@ -82,7 +82,6 @@ class PublicationResource extends Resource
                         return $record->authors->pluck('first_name')->join(', ');
                     }),
                 Tables\Columns\TextColumn::make('publisher'),
-                Tables\Columns\TextColumn::make('abstract'),
                 Tables\Columns\TextColumn::make('publication_type')
                     ->label('Publication Type')
                     ->formatStateUsing(function ($state) {
