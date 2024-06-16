@@ -65,7 +65,7 @@ class Project extends Model
     {
         $start = Carbon::createFromFormat('Y-m-d', $dateStart);
         $end = Carbon::createFromFormat('Y-m-d', $dateEnd);
-
+        $end->addDay();
         return $start->diffInMonths($end);
     }
 
