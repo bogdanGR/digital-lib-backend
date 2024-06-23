@@ -32,8 +32,11 @@ class PublicationSearch
         if ($request->filled('to')) {
             $query->where('publication_date', '<=', $request->input('to'));
         }
+
         if ($request->filled('text')) {
-            $query->where('text', 'like', '%' . $request->input('text') . '%');
+            $query->whereHas('file', function ($q) use ($request) {
+                $q->where('text_content', 'like', '%' . $request->input('text') . '%');
+            });
         }
 
         if ($request->filled('type') && $request->input('type') !== 'All') {

@@ -17,6 +17,7 @@ class File extends Model
         'file_path',
         'size',
         'type',
+        'text_content',
     ];
 
     public $timestamps = true;

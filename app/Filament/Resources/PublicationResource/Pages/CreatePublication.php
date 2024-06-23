@@ -7,6 +7,8 @@ use App\Models\File;
 use App\Models\Publication;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Facades\Log;
+use Spatie\PdfToText\Pdf;
 
 class CreatePublication extends CreateRecord
 {
@@ -21,6 +23,24 @@ class CreatePublication extends CreateRecord
 
         $publication->file_id = $fileId;
         $publication->save();
+
+
+        if (!empty($fileId)) {
+            $fileModel = File::find($fileId);
+            $path = public_path('storage/' . $fileModel->file_path);
+            try {
+                // Extract text from the PDF
+                $pdfText = Pdf::getText($path);
+            } catch (\Exception $e) {
+                Log::error('PDF text extraction failed: ' . $e->getMessage(), [
+                    'file' => $path
+                ]);
+                $pdfText = null;
+            }
+
+            $fileModel->update(['text_content' => $pdfText]);
+        }
+
 
         return $publication;
     }
