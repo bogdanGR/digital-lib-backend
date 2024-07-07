@@ -6,6 +6,7 @@ use App\Filament\Resources\CourseResource\Pages;
 use App\Filament\Resources\CourseResource\RelationManagers;
 use App\Models\Course;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -29,6 +30,7 @@ class CourseResource extends Resource
                 Select::make('type')
                     ->required()
                     ->options(Course::types()),
+                RichEditor::make('description')->required(),
             ]);
     }
 

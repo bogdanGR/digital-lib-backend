@@ -15,6 +15,7 @@ class Course extends Model
         'title_en',
         'title_gr',
         'type',
+        'description'
     ];
 
     const UNDERGRADUATE = 1;

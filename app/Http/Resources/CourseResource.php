@@ -20,7 +20,8 @@ class CourseResource extends JsonResource
             'title_en' => $this->title_en,
             'title_gr' => $this->title_gr,
             'type_id' => $this->type,
-            'type' => Course::types()[$this->type]
+            'type' => Course::types()[$this->type],
+            'description' => $this->description,
         ];
     }
 }
